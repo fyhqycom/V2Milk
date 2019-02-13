@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>V2Milk</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        ::selection {
+            background:transparent;
+        }
+        .loader {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #F5F8FA;
+            z-index: 9998;
+            text-align: center;
+        }
+
+        .plane-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+    </style>
+</head>
+<body class="light">
+<!-- Pre loader -->
+<div id="loader" class="loader">
+    <div class="plane-container">
+        <div class="preloader-wrapper small active">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+
+            <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div><div class="gap-patch">
+                <div class="circle"></div>
+            </div><div class="circle-clipper right">
+                <div class="circle"></div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="app">
+
+<div class="page height-full">
+    <header class="blue accent-3 relative nav-sticky">
+        <div class="container-fluid text-white">
+            <br>
+            <div class="row p-t-b-10 ">
+                <div class="col">
+                    <h4 id="HDashboard">
+                        <i class="icon-box"></i>
+                        Dashboard
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <ul class="nav responsive-tab nav-material nav-material-white" id="v-pills-tab">
+                    <li>
+                        <a class="nav-link active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1"><div id="HRoutes">Routes</div></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2"><div id="HDIY">Custom Routes</div></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4"><div id="HLog">System Log</div></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" id="v-pills-7-tab" data-toggle="pill" href="#v-pills-7"><div id="HSystemSettings">System Settings</div></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3"><div id="HAboutUs">About Us</div></a>
+                    </li>
+                </ul>
+                <a class="btn-fab fab-right btn-danger">
+                    <i class="icon icon-plug" id="V2Milk-stopServers"></i>
+                </a>
+                <a class="btn-fab fab-right btn-warning" style="right:100px;">
+                    <i class="icon icon-refresh2" id="V2Milk-rebootPACServer"></i>
+                </a>
+                <a class="btn-fab fab-right btn-primary" style="right:160px;">
+                    <i class="icon icon-refresh" id="V2Milk-refreshSystemPackages"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div class="container-fluid relative animatedParent animateOnce" style="top:10px;">
+        <div class="tab-content pb-3" id="v-pills-tabContent">
+            <div class="tab-pane animated fadeInUpShort go show active" id="v-pills-1">
+                <div class="row my-3">
+                    <div class="col-md-3">
+                        <div class="counter-box white r-5 p-3">
+                            <div class="p-4">
+                                <div class="float-right">
+                                    <div class="image">
+                                        <i id="useronlineT" class="icon-circle text-danger blink" style="float:right;margin-left:-10px;"></i>
+                                        <img id="userImageF" class="user_avatar icon s-48" style="width:48.9px;margin-left:3px;" src="assets/img/dummy/u2.png">
+                                    </div>
+                                </div>
+                                <div class="counter-title"><a id="useronlineF"> Offline</a></div>
+                                <h5 class="mt-3" id="usernameF">Please Login</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="counter-box white r-5 p-3">
+                            <div class="p-4">
+                                <div class="float-right">
+                                    <span class="icon icon-mail-envelope-open s-48"></span>
+                                </div>
+                                <div class="counter-title" id="Title1">Account</div>
+                                <h5 class="mt-3" id="loginButtonF"><a class="btn btn-primary btn-xs" style="height:25px;font-size:12px;" onclick="onClickControl('login', 'null')">login</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="counter-box white r-5 p-3">
+                            <div class="p-4">
+                                <div class="float-right">
+                                    <span class="icon icon-stop-watch3 s-48" id="RouteLinkedIcon"></span>
+                                </div>
+                                <div class="counter-title" id="Title2">Route</div>
+                                <h5 class="mt-3" id="RouteLinked">None</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="counter-box white r-5 p-3">
+                            <div class="p-4">
+                                <div class="float-right">
+                                    <span class="icon icon-inbox-document-text s-48"></span>
+                                </div>
+                                <div class="counter-title" id="Title3">PACServer</div>
+                                <h5 class="mt-3" id="PACServer"><a class="btn btn-warning btn-xs" style="height:25px;font-size:12px;" onclick="onClickControl('editPac', 'null')">edit</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <div class="white p-5 r-5">
+                            <div class="card-title">
+                                <h5 id="HSelectRoute">Choose Route</h5>
+                            </div>
+                            <div class="row my-3">
+                                 <div class="col-md-12">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                        <th id="HRoute">Route</th>
+                                                        <th id="HAction">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="routePackages">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane animated fadeInUpShort go" id="v-pills-2">
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <div class="white p-5 r-5">
+                            <div class="card-title">
+                                <h5 id="HCSelectRoute">Choose Route</h5>
+                                <a class="btn-fab fab-right btn-primary" style="top:30px;right:50px;">
+                                    <i class="icon icon-plus" id="addCustomRoute"></i>
+                                </a>
+                                <a class="btn-fab fab-right btn-warning" style="top:30px;right:100px;">
+                                    <i class="icon icon-refresh" id="refreshSubscribes"></i>
+                                </a>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-md-12">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                        <th id="HCRoute">Route</th>
+                                                        <th id="HCStatus">Status</th>
+                                                        <th id="HCAction">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="cRoutePackages">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane animated fadeInUpShort go" id="v-pills-3">
+                <div class="row">
+                    <div class="col-md-12 mx-md-auto m-5">
+                        <div class="card no-b shadow">
+                            <div class="card-body p-4">
+                                <p id="aboutUs"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane animated fadeInUpShort go" id="v-pills-4">
+                <div class="row my-3">
+                    <div class="col-md-6">
+                        <div class="white p-5 r-5">
+                            <div class="card-title">
+                                <h5 id="HSysLog">System Log</h5>
+                            </div>
+                            <div class="row my-3">
+                                 <div class="col-md-12">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <div id="V2log" style="overflow-y:auto;overflow-x:auto;height:300px;margin-top:20px;"></div>
+                                            <a class="btn-fab fab-right btn-primary" style="bottom:-40px;right:-5px;">
+                                                <i class="icon icon-arrow_downward" id="V2LogToBottom"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="white p-5 r-5">
+                            <div class="card-title">
+                                <h5 id="HV2Log">V2Ray Log</h5>
+                            </div>
+                            <div class="row my-3">
+                                 <div class="col-md-12">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <div id="V2Status" style="overflow-y:auto;overflow-x:auto;height:300px;margin-top:20px;"></div>
+                                            <a class="btn-fab fab-right btn-primary" style="bottom:-40px;right:-5px;">
+                                                <i class="icon icon-arrow_downward" id="V2StatusToBottom"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane animated fadeInUpShort go" id="v-pills-5">
+                <div class="row">
+                    <div class="col-md-12 mx-md-auto m-5">
+                        <div class="card no-b shadow">
+                            <div class="card-body p-4">
+                                <div class="form-group has-icon"><i class="icon-envelope-o"></i>
+                                    <input type="text" id="emailF" class="form-control form-control-lg" placeholder="Email">
+                                </div>
+                                <div class="form-group has-icon"><i class="icon-user-secret"></i>
+                                    <input type="password" id="passwordF" class="form-control form-control-lg" placeholder="Password">
+                                </div>
+                                <input type="submit" id="V2Milk-submit" class="btn btn-primary btn-lg btn-block" value="Login">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane animated fadeInUpShort go" id="v-pills-6">
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <div class="card-body no-p">
+                            <div class="tab-content">
+                                <div class="bg-primary text-white lighten-2" style="border-radius:0 0 5px 5px;">
+                                    <div class="pt-5 pb-2 pl-5 pr-5">
+                                        <h2 class="font-weight-normal"><div id="SubscribeInfo">Subscribe...</div></h2>
+                                        <span class="s-48 text-primary">
+                                            <div class="form-group" style="float:left;width:90%;margin-top:10px;">
+                                                <input type="text" id="SubscribeName" class="form-control form-control-sm" placeholder="Name...">
+                                                <p></p>
+                                                <input type="text" id="SubscribeUrl" class="form-control form-control-sm" placeholder="Url...">
+                                                <p></p>
+                                                <input type="submit" id="V2Milk-subscribSubmit" class="btn btn-primary btn-lg btn-block" value="Submit">
+                                            </div>
+                                        </span>
+                                        <div class="float-right">
+                                            <span class="icon icon-laptop_mac s-48"></span>
+                                        </div>
+                                        <div style="height:190px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane animated fadeInUpShort go" id="v-pills-7">
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <div class="card-body no-p">
+                            <div class="bg-primary text-white lighten-2" style="border-radius:5px;">
+                                <div class="pt-5 pb-2 pl-5 pr-5">
+                                    <h2 class="font-weight-normal" id="SystemSettings">Settings</h2>
+                                    <span class="text-primary">
+                                        <div class="form-group" style="float:left;width:90%;font-size:17px;">
+                                            <label for="Socks5Port" class="col-form-label" id="Socks5PortDecs">Socks5 Port</label>
+                                            <input type="text" id="Socks5Port" class="form-control form-control-sm" placeholder="Socks5Port">
+                                            <p></p>
+                                            <label for="Socks5Port" class="col-form-label" id="HttpPortDecs">HTTP Port</label>
+                                            <input type="text" id="HttpPort" class="form-control form-control-sm" placeholder="HttpPort">
+                                            <p></p>
+                                            <label for="Socks5Port" class="col-form-label" id="PACPortDecs">PAC Port</label>
+                                            <input type="text" id="PACPort" class="form-control form-control-sm" placeholder="PACPort">
+                                            <p></p>
+                                            <input type="submit" id="V2Milk-SettingSubmit" class="btn btn-primary btn-lg btn-block" value="Submit">
+                                        </div>
+                                    </span>
+                                    <div class="float-right">
+                                        <span class="icon icon-settings2 s-48"></span>
+                                    </div>
+                                    <div style="height:350px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button style="visibility:hidden;position:absolute;" class="toast-action" id="alertToastButton"></button>
+
+<script src="assets/js/app.js"></script>
+<script>
+    const remote = require('electron').remote
+    const {shell} = require('electron')
+
+    const ipc = require('electron').ipcRenderer;
+    const currentWindow = remote.getCurrentWindow();
+
+    function onClickControl(element, data){
+        ipc.send('onClickControl', element, data)
+    }
+
+    require('./src/main/renderer')
+</script>
+</body>
+</html>
